@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+
+{% block title %}
+My Profile
+{% endblock title %}
+
+{% block content %}
+
+<h1>My Profile</h1>
+<hr>
+<img src={{profile_obj.avatar.url}}>
+<h1>Name: {{profile_obj.first_name}} {{profile_obj.last_name}}</h1>
+<h1>Bio: {{profile_obj.bio}}</h1>
+
+{% if profile_obj.country != '' %}
+<h1>Country: {{profile_obj.country}}</h1>
+{% endif %}
+
+<h1>Email: {{profile_obj.email}}</h1>
+<h1>Slug: {{profile_obj.slug}}</h1>
+<h1>Created at: {{profile_obj.created}}</h1>
+
+{% for friend in profile_obj.get_friends%}
+	<li>{{friend}}</li>
+{% endfor %}
+
+
+{% endblock content %}
+
+{% block scripts %}
+<script type="text/javascript">
+</script>
+{% endblock scripts %}
