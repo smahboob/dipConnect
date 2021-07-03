@@ -44,8 +44,21 @@ semantic ui = https://semantic-ui.com/elements/
 overriding the semantic ui: https://stackoverflow.com/questions/55005996/overriding-styles-in-semantic-ui-react
 
 created a POST form, to show an update popup and update the profile information. 
+created Post model, like model and comment models, and displayed also
 ------
 
 Start here next time
-	Part 6
-	https://www.youtube.com/watch?v=7VhhO1QepNo&list=PLgjw1dR712joFJvX_WKIuglbR1SNCeno1&index=6
+	Part 7
+	https://www.youtube.com/watch?v=orTvLAysEHQ&list=PLgjw1dR712joFJvX_WKIuglbR1SNCeno1&index=7
+
+
+
+Notes
+
+	tagging system
+	https://dev.to/coderasha/how-to-add-tags-to-your-models-in-django-django-packages-series-1-3704
+
+	if u change anything in models, call 
+										python3 manage.py makemigrations
+										python3 manage.py migrate
+										run server again

@@ -7,7 +7,6 @@
 {% block content %}
 
 	
-
 	<!--MODAL FOR PROFILE UPDATE-->
 	<div class="ui modal mymodal">
 		<i class="close icon"></i>
@@ -34,7 +33,6 @@
 			</form>
 		</div>
 	</div>
-
 
 	<!--MODAL FOR PROFILE DISPLAY-->
 	<div class="ui segment">
@@ -85,6 +83,18 @@
 									</ul>
 								</td>
 							</tr>
+							<tr>
+								<td class = 'bold-label'>Number of Posts</td>
+								<td>{{profile_obj.get_posts_no}}</td>
+							</tr>
+							<tr>
+								<td class = 'bold-label'>Number of Likes given</td>
+								<td>{{profile_obj.get_likes_given_no}}</td>
+							</tr>
+							<tr>
+								<td class = 'bold-label'>Number of Likes received</td>
+								<td>{{profile_obj.get_likes_received_no}}</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -92,8 +102,11 @@
 		</div>
 	</div>
 
-	<div class="row mt-5">
-		<button class='ui secondary button' id='profile-update-model-btn'>Update Profile
+	<!--Update Button-->
+	<div class="row mt-40">
+		<button class='ui secondary button' id='profile-update-model-btn'>Update Profile  
+		<i class="pencil icon"></i>
+		</button>
 	</div>
 
 {% endblock content %}
