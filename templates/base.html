@@ -18,8 +18,7 @@
     <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 
-  
-    <title>dipconnect - {% block title %}{% endblock title %}</title>
+    <title>DipConnect - {% block title %}{% endblock title %}</title>
   </head>
   <body>
     {% include 'main/navbar.html'%}
@@ -31,8 +30,7 @@
     {% block scripts %}
     {% endblock scripts %}
    
-   <!--Custom js-->
-   <script type="text/javascript" src="{% static 'main.js' %}"></script>
-
+   <!--Custom js (main.js was not working for some reson so had to change.)-->
+   <script type="text/javascript" src="{% static 'main_javascript.js' %}"></script>
   </body>
 </html>

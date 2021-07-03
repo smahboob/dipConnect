@@ -23,8 +23,8 @@ class Profile(models.Model):
     def get_friends(self):
         return self.friends.all()
 
-    def get_total_number_of_friends(slef):
-        return self.friends.all().count
+    def get_total_number_of_friends(self):
+        return self.friends.all().count()
     
     def __str__(self):
         return f"{self.user.username}-{self.created.strftime('%d-%m-%Y')}" 

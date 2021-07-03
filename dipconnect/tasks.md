@@ -1,3 +1,5 @@
+github repo: https://github.com/hellopyplane/Social-Network/tree/master/profiles
+
 1. Profiles
 	-profile
 	-relationship between profile, how to make friends, how to remove friends. 
@@ -22,11 +24,7 @@ superuser details. other user details for testing
 u can create a test user, 
 	and then generate a profile for them
 
-
-Start here next time
-	Part 5
-	https://www.youtube.com/watch?v=vnN3tANBNSE&list=PLgjw1dR712joFJvX_WKIuglbR1SNCeno1&index=5
-
+--------
 Implemented uptil now,
 	profiles, relationships, send and accept request udpates, signal receivers to create user profiles and update relationships
 	created html files for base, nav, and extended to home and profile
@@ -37,3 +35,17 @@ Implemented uptil now,
 		http://127.0.0.1:8000/
 		http://127.0.0.1:8000/admin/
 
+Started on Part-5 on Sat, July 3rd. (From the profiles page and form)
+
+#go to settings and clear the cookies or history if static files such as style.css or main_javascript.js are not working. 
+ended part 5
+finished implemneting the profile url,used semantic ui
+semantic ui = https://semantic-ui.com/elements/
+overriding the semantic ui: https://stackoverflow.com/questions/55005996/overriding-styles-in-semantic-ui-react
+
+created a POST form, to show an update popup and update the profile information. 
+------
+
+Start here next time
+	Part 6
+	https://www.youtube.com/watch?v=7VhhO1QepNo&list=PLgjw1dR712joFJvX_WKIuglbR1SNCeno1&index=6

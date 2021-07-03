@@ -1,13 +1,33 @@
-body{
-	background: #F8F8F8 !important;
+body {
+    background: #F8F8F8 !important;
 }
 
-.nav{
-	border-radius: 0px !important;
-	padding: 10px 0 10px 0 !important;
-	background-color: #043E74 !important;
+.nav {
+    border-radius: 0px !important;
+    padding: 10px 0 10px 0 !important;
+    background-color: #043E74 !important;
 }
 
-.mb-7{
-	margin-bottom: 7px !important;
+.mb-7 {
+    margin-bottom: 7px !important;
+}
+
+.mt-5 {
+    margin-top: 5px !important;
+}
+
+.mymodal {
+    height: 300px !important;
+    top: 200px !important;
+    font-size: 20px !important;
+}
+
+.bold-label {
+    font-weight: bolder;
+}
+
+img.ui.medium.rounded.image {
+    width: 190px !important;
+    height: 200px !important;
+    border-radius: 15px;
 }
