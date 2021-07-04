@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Posts
+{% endblock title %}
+
+
+{% block content %}
+
+<!--This div is divided in two portions of ui semantic grid, first is posts display, second is the new upload form-->
+<div class = "ui grid">
+    <div class = "row">  
+
+        <div class = 'eleven wide column'>
+            {% for obj in query_set %}
+                <!--Card for each Post-->
+               <div class = "ui fluid card">
+                    <div class = "content">
+                        {{obj.content}}
+                    </div>
+                    <div class = "content">
+
+                        <!--Form for like button-->
+                        <form action="{% url 'posts:like-post-view' %}" method = "POST">
+                            {% csrf_token %}
+                            <input type = "hidden" name = "post_id" value ={{obj.id}}></input>
+
+                            <button type = "submit" class = "ui primary button">
+                                {% if profile not in obj.liked.all %}
+                                    <i class="thumbs up icon"></i>&nbsp;Like
+                                {% else %}
+                                    <i class="thumbs down icon"></i>&nbsp;Unlike
+                                {% endif %}
+                            </button>
+                            &nbsp;{{obj.num_likes}}
+                        </form>
+                    </div>
+               </div>
+            {% endfor %}
+        </div>
+
+        <div class = 'five wide column'>
+            FORM
+        </div>
+
+    </row>
+</div> 
+
+{% endblock content %}
+

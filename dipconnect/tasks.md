@@ -24,16 +24,19 @@ superuser details. other user details for testing
 u can create a test user, 
 	and then generate a profile for them
 
---------
+
+run the server on python3 manage.py runserver and take a look the urls
+		http://127.0.0.1:8000/profiles/myprofile/
+		http://127.0.0.1:8000/
+		http://127.0.0.1:8000/admin/
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 Implemented uptil now,
 	profiles, relationships, send and accept request udpates, signal receivers to create user profiles and update relationships
 	created html files for base, nav, and extended to home and profile
 	last left on editing profile.html where all info and image should show. 
 
-	run the server on python3 manage.py runserver and take a look the urls
-	http://127.0.0.1:8000/profiles/myprofile/
-		http://127.0.0.1:8000/
-		http://127.0.0.1:8000/admin/
 
 Started on Part-5 on Sat, July 3rd. (From the profiles page and form)
 
@@ -45,15 +48,17 @@ overriding the semantic ui: https://stackoverflow.com/questions/55005996/overrid
 
 created a POST form, to show an update popup and update the profile information. 
 created Post model, like model and comment models, and displayed also
-------
 
-Start here next time
-	Part 7
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Currently working on
+	Start Part 7
 	https://www.youtube.com/watch?v=orTvLAysEHQ&list=PLgjw1dR712joFJvX_WKIuglbR1SNCeno1&index=7
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Notes
+## Notes
 
 	tagging system
 	https://dev.to/coderasha/how-to-add-tags-to-your-models-in-django-django-packages-series-1-3704

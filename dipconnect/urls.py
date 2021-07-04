@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home_view'), #PART4
     path('profiles/', include('profiles.urls', namespace='profiles')), #link to profiles 
+    path('posts/', include('posts.urls', namespace='posts')), #link to posts , PART 7
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
