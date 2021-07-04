@@ -10,3 +10,10 @@ $(document).ready(function() {
             .modal('show');
     })
 })
+
+//fade messages
+// $('#new-post-form').submit(function(e) {
+//     console.log("came to post submit")
+//     $("#success-message").show();
+//     setTimeout(function() { $("#myElem").hide(); }, 5000);
+// });

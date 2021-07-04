@@ -49,12 +49,14 @@ overriding the semantic ui: https://stackoverflow.com/questions/55005996/overrid
 created a POST form, to show an update popup and update the profile information. 
 created Post model, like model and comment models, and displayed also
 
+finished implementing new comment, new post and show comment
+fix the ui later, basic form functionality is working for now. 
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Currently working on
-	Start Part 7
-	https://www.youtube.com/watch?v=orTvLAysEHQ&list=PLgjw1dR712joFJvX_WKIuglbR1SNCeno1&index=7
-
+Start working on
+	Part 9
+	https://www.youtube.com/watch?v=UAwxz0LogqE&list=PLgjw1dR712joFJvX_WKIuglbR1SNCeno1&index=9
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

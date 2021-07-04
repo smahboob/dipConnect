@@ -35,14 +35,37 @@
                             &nbsp;{{obj.num_likes}}
                         </form>
                     </div>
+
+                    <!-- Display comments-->
+                    <div>
+                        {% if obj.comment_set.all %}
+                            {% for comment in obj.comment_set.all %}
+                                <p>{{comment.body}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <!--Form for comment button-->
+                   <form action = "" method = "POST" class = "ui form">
+                        {% csrf_token %}
+                        <input type="hidden" name = "post_id" value = {{obj.id}}></input>
+                        {{comment_form}}
+                        <button name = "submit_comment_form" type="submit" class = "ui primary button">Comment</button>
+                   </form>
                </div>
             {% endfor %}
         </div>
 
         <div class = 'five wide column'>
-            FORM
+            {% if post_add %}
+                <div id = "success-message" class="ui green message">Successfully Posted!</div>
+            {% endif %}
+            <form id = "new-post-form" method = "POST" action = "" class = "ui form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{post_form}}
+                <button name = "submit_post_form" type="submit" class = "ui button positive mt-10">Create</button>
+            </form>
         </div>
-
     </row>
 </div> 
 
