@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
 from .models import Post, Profile, Like, Comment
 from .forms import PostModelForm, CommentModelForm
+from django.views.generic import UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.contrib import messages
 
 # Create your views here.
 
@@ -74,3 +77,41 @@ def like_unlike_post(request):
         
             
     return redirect('posts:main-post-view')
+
+
+#this class based view is to delete the posts, url in urls.py
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = 'posts/confirm_delete.html'
+    
+    #this is where u go once successfull in deleting
+    #reverse is used for function views and reverse lazy for class based view
+    #another similar way is success_url = 'posts/'
+    success_url = reverse_lazy('posts:main-post-view')
+    
+    
+    #check if the author is the logged in user, other show warning
+    def get_object(self, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        obj = Post.objects.get(pk=pk)
+        if not obj.author.user == self.request.user:
+            messages.warning(self.request, 'You need to be the author of the post to delete it!')
+        return obj
+
+
+#this class based view is to update the posts, url in urls.py
+class PostUpdateView(UpdateView):
+    model = Post
+    form_class = PostModelForm  #this is the basic view for new post that we created
+    template_name = 'posts/update.html'         #this is the html file
+    success_url = reverse_lazy('posts:main-post-view')
+        
+    #check if the author matches
+    def form_valid(self, form):
+        #grab the user from the profile object
+        profile = Profile.objects.get(user=self.request.user)
+        if form.instance.author == profile:
+            return super().form_valid(form)
+        else:
+            form.add_error(None, "You need to be the author of the post to update it!")
+            return super().form_invalid(form)

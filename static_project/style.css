@@ -7,6 +7,10 @@ body {
     background-color: #043E74 !important;
 }
 
+.mb-5 {
+    margin-bottom: 5px !important;
+}
+
 .mb-7 {
     margin-bottom: 7px !important;
 }
@@ -17,6 +21,10 @@ body {
 
 .mt-40 {
     margin-top: 40px !important;
+}
+
+.mt-5 {
+    margin-top: 5px !important;
 }
 
 .mymodal {
@@ -59,4 +67,16 @@ button.ui.secondary.button {
 .pencil.icon {
     margin-left: 5px !important;
     margin-right: 0px !important;
+}
+
+.b-delete {
+    background-color: rgb(244, 82, 82) !important;
+}
+
+.b-update {
+    background-color: rgb(78, 211, 78) !important;
+}
+
+.comment-box {
+    display: none;
 }
