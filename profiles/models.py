@@ -2,8 +2,39 @@ from django.db import models
 from django.contrib.auth.models import User
 from .utils import get_random_token
 from django.template.defaultfilters import slugify
-
+from django.db.models import Q
 # blank = True means that field is empty
+
+class ProfileManager(models.Manager):
+    
+    #get all profile that are not already in a frienship with ur profile
+    def get_all_profiles_available_to_invite(self, sender):
+        profiles = Profile.objects.all().exclude(user=sender)
+        profile = Profile.objects.get(user=sender)
+        
+        #query set for all relations where we sent or received request, which are accepted add all of them to an array
+        query_set = Relationship.objects.filter(Q(sender=profile) | Q(receiver=profile))
+        accepted = []
+        for relation in query_set:
+            if relation.status == 'accepted':
+                accepted.append(relation.receiver)
+                accepted.append(relation.sender)
+                
+        #this contains users except us and also all that are already accepted
+        available = [profile for profile in profiles if profile not in accepted]
+       
+        print('query_set:', query_set)
+        print("accepted:", accepted)
+        print("available:", available)
+        
+        
+        return available
+    
+    #get all profiles except me
+    def get_all_profiles(self, me):
+        profiles = Profile.objects.all().exclude(user=me)
+        return profiles
+
 
 class Profile(models.Model):
     first_name = models.CharField(max_length=200)
@@ -19,6 +50,9 @@ class Profile(models.Model):
     slug = models.SlugField(unique=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    
+    #profile manage
+    objects = ProfileManager()
 
     def get_friends(self):
         return self.friends.all()
@@ -72,6 +106,15 @@ STATUS_CHOICES = (
     ('accepted','accepted')
 )
 
+
+
+#Relationship.objeects.invitations_received(myprofile)
+#we want to do this in our view
+class RelationshipManager(models.Manager):
+    def invitations_received(self, receiver):
+        query_set = Relationship.objects.filter(receiver=receiver, status='send')
+        return query_set
+
 class Relationship(models.Model):
     #evertime a profile is deleted, remove the relationship also
     sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='sender') #who sends the invite
@@ -79,6 +122,7 @@ class Relationship(models.Model):
     status = models.CharField(max_length=8, choices=STATUS_CHOICES) #if accepted, ignored, deleted, if accepted, we need signal to increase friends.
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    objects = RelationshipManager() #this is to initialize the manager for invitations
 
     def __str__(self):
         return f"{self.sender}-{self.receiver}-{self.status}"

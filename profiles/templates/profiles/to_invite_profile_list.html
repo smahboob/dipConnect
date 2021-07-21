@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Invite Friends
+{% endblock title %}
+
+{% block content %}
+
+    {% if is_empty %}
+        <h1>You don't have any new profiles to display!</h1>
+    {% endif %}
+
+    <ul>
+        {% for obj in query_set %}
+            <li>{{obj}}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}

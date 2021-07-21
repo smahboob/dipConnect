@@ -37,31 +37,37 @@
             <!--This is where the like form and like display are handled-->
             <div class="content">
                 <p> {{ obj.content }} </p>
-                <div class="right floated">
-                    <form action="{% url 'posts:like-post-view' %}" method="POST" class='like-form' id='{{obj.id}}'>
-                        {% csrf_token %}
-                        <input type="hidden" name="post_id" value={{obj.id}}>
-                            <button type="submit" class="ui button like-btn{{obj.id}}">
-                                {% if profile not in obj.liked.all %}
-                                    Like
-                                {% else %}
-                                    Unlike
-                                {% endif %}
-                            </button>
-                            <div class="ui grid">
-                                <div class="column">
-                                    <div class="like-count{{obj.id}}"> {{obj.num_likes}} </div>
-                                </div>
-                                <div class="column">
-                                    likes
-                                </div>
-                            </div>
-                    </form>
-                </div>
             </div>
 
-            <!--Comment Box, Comment Icon and Number of Comments, JS scripts handles show and hide-->
+            <!--Like, Comment Box, Comment Icon and Number of Comments, JS scripts handles show and hide-->
             <div class="extra content">
+
+                    <!--Likes (Have corresponding ajav and js in scripts block)-->
+                    <div class="right floated">
+                        <form action="{% url 'posts:like-post-view' %}" method="POST" class='like-form' id='{{obj.id}}'>
+                            {% csrf_token %}
+                            <input type="hidden" name="post_id" value={{obj.id}}>
+                                <button type="submit" class="ui button like-btn{{obj.id}}">
+                                    {% if profile not in obj.liked.all %}
+                                        <!--<i class="thumbs up icon gray"></i>{{obj.num_likes}}-->
+                                        Like
+                                    {% else %}
+                                        <!--<i class="thumbs up icon blue"></i>{{obj.num_likes}}-->
+                                        Unlike
+                                    {% endif %}
+                                </button>
+                                <div class="ui grid">
+                                    <div class="column">
+                                        <div class="like-count{{obj.id}}"> {{obj.num_likes}} </div>
+                                    </div>
+                                    <div class="column">
+                                        likes
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+
+                    <!--Comments-->
                     <button class="cmt_btn ui button mb-5"><i class="comment icon"></i>{{ obj.num_comments }}</button>
                     <div class="comment-box">
                         {% if obj.comment_set.all %}
