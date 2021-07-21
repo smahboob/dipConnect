@@ -4,9 +4,9 @@
 Date: July 20
 Starting on Video 9
 Posts page is implemented, need to improve functionatlity and looks
-
-
-
+Update main.html for posts home
+Created two new views, PostUpdate and PostDelete, takes a primary key both and check for authentic user to delete or update
+Continue work on Vide 10 next time
 
 
 ## Related links:
