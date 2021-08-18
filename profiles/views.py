@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from .models import Profile, Relationship
 from .forms import ProfileModelForm
+from django.views.generic import ListView
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 #PART4 start
@@ -68,3 +72,69 @@ def invite_profiles_list_view(request):
 	}
     
     return render(request, 'profiles/to_invite_profile_list.html', context)
+
+
+#profile list view inherits from the list view
+class ProfileListView(ListView):
+    model = Profile
+    template_name = 'profiles/profile_list.html'
+    context_object_name = 'query_set'
+    
+    def get_queryset(self):
+        query_set = Profile.objects.get_all_profiles(self.request.user)
+        return query_set
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = User.objects.get(username__iexact=self.request.user)
+        profile = Profile.objects.get(user=user)	#this is the current users profile
+        
+        #if u are a receiver of a request
+        rel_r = Relationship.objects.filter(sender=profile)
+        rel_receiver = []
+        for item in rel_r:
+            rel_receiver.append(item.receiver.user)
+        context["rel_receiver"] = rel_receiver
+
+        #if u are a sender of a request
+        rel_s = Relationship.objects.filter(receiver=profile)
+        rel_sender = []
+        for item in rel_s:
+            rel_sender.append(item.sender.user)
+        context["rel_sender"] = rel_sender
+        
+        #check if the context is empty
+        context['is_empty'] = False
+        if len(self.get_queryset()) == 0:
+            context['is_empty'] = True
+        return context
+    
+
+#PART11-12    
+@login_required
+def send_invatation(request):
+    if request.method=='POST':
+        pk = request.POST.get('profile_pk')
+        user = request.user
+        sender = Profile.objects.get(user=user)
+        receiver = Profile.objects.get(pk=pk)
+
+        rel = Relationship.objects.create(sender=sender, receiver=receiver, status='send')
+
+        return redirect(request.META.get('HTTP_REFERER'))
+    return redirect('profiles:my-profile-view')
+    
+@login_required
+def remove_from_friends(request):
+    if request.method=='POST':
+        pk = request.POST.get('profile_pk')
+        user = request.user
+        sender = Profile.objects.get(user=user)
+        receiver = Profile.objects.get(pk=pk)
+
+        rel = Relationship.objects.get(
+            (Q(sender=sender) & Q(receiver=receiver)) | (Q(sender=receiver) & Q(receiver=sender))
+        )
+        rel.delete()
+        return redirect(request.META.get('HTTP_REFERER'))
+    return redirect('profiles:my-profile-view')

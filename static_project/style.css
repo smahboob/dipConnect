@@ -59,6 +59,11 @@ button.ui.secondary.button {
     transform: translate(-50%, -50%) !important;
 }
 
+.ui.small.image {
+    border-radius: 10%;
+    top: 10%;
+}
+
 .ui.segment {
     margin-top: 20px !important;
     border: 3px solid #043E74 !important;
